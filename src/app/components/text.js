@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import styles from "./BendingLine.module.css";
+import Navbar from "../../../Ghion-Its/src/app/components/Nav";
 
 const BentLine = ({color}) => {
   const canvasRef = useRef(null);
@@ -90,7 +91,7 @@ const BentLine = ({color}) => {
   }, [color]);
 
   return (
-    <div className={`${styles.container} relative h-screen lg:grid grid-cols-2`}>
+    <div className={`${styles.container} absolute top-0 h-screen lg:grid grid-cols-2`}>
       <canvas
         ref={canvasRef}
         className={styles.canvas}
@@ -99,10 +100,11 @@ const BentLine = ({color}) => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%",
+          height: "100vh",
           zIndex: -1,
         }}
       />
+      <Navbar></Navbar>
         <div>
           <h1 className="text-5xl md:text-4xl font-bold text-center text-gray-200 mt-6 sm:mt-10 mb-4 sm:mb-6">
             <span className="text-indigo-600">Empowering</span>{" "}

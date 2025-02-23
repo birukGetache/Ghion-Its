@@ -2,15 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faTwitter, faTelegram } from "@fortawesome/free-brands-svg-icons"; // Importing Telegram icon
+import { faLinkedin, faTwitter, faTelegram } from "@fortawesome/free-brands-svg-icons";
 import { faUserCircle as faSolidUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const teamMembers = [
   {
     id: 1,
     name: "Nahom Keneni",
     role: "CEO and Co-founder",
-    special: "backend developer, web3 developer , distributed fike system infrustructure developer, and generative ai developer",
+    special: "Backend developer, web3 developer, distributed file system infrastructure developer, and generative AI developer",
     image: "/nahom.png",
     linkedin: "https://www.linkedin.com/in/nahom-keneni-638290330/",
     twitter: "@Gopher1221",
@@ -19,8 +20,8 @@ const teamMembers = [
   {
     id: 2,
     name: "Ananiya",
-    role: "cto and cofounder",
-    special: "Senior full stack developer , Web 3 developer Video editor and graphics designer ai expert",
+    role: "CTO and Co-founder",
+    special: "Senior full-stack developer, Web3 developer, Video editor and graphics designer, AI expert",
     image: "/ananiya.png",
     linkedin: "https://linkedin.com/in/birukf",
     twitter: "https://twitter.com/birukf",
@@ -30,7 +31,7 @@ const teamMembers = [
     id: 3,
     name: "Biruk Getachew",
     role: "CTO and Co-founder",
-    special: "generative ai developer and full stack web and app developer",
+    special: "Generative AI developer and full-stack web and app developer",
     image: "/156351009.jpg",
     linkedin: "https://www.linkedin.com/in/biruk-getachew-708b112aa/",
     twitter: "https://twitter.com/Kaleb",
@@ -40,18 +41,17 @@ const teamMembers = [
     id: 4,
     name: "Danawit Habtamu",
     role: "Frontend and UI/UX Designer",
-    special: "danawit frontend developer ui developer and devops",
+    special: "Frontend developer, UI developer, and DevOps",
     image: "/danawit.png",
     linkedin: "https://www.linkedin.com/in/danawit-habtamu-203722338?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     twitter: "https://twitter.com/Kaleb",
     profile: "https://example.com/Kaleb",
   },
-
   {
     id: 5,
     name: "Maered Girma Assefa",
-    role: " full stack web app developer",
-    special: "skilled to handle all aspects of web development—both front-end and back-end—allowing them to build a complete web application from scratch.",
+    role: "Full-stack web app developer",
+    special: "Skilled in all aspects of web development—both front-end and back-end.",
     image: "/MAERED.png",
     linkedin: "https://www.linkedin.com/in/danawit-habtamu-203722338?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     twitter: "https://twitter.com/Kaleb",
@@ -59,38 +59,43 @@ const teamMembers = [
   },
 ];
 
-const Team = ({ isVisible }) => {
+const Team = () => {
   const [person, setPerson] = useState(false);
   const [detailid, setDetailid] = useState({});
 
- useEffect(() => {
-  if (person) {
-    document.body.style.overflowY = "hidden"; // Disable horizontal scrolling
-  } else {
-    document.body.style.overflowY = "auto"; // Restore horizontal scrolling
-    document.body.style.overflowX = "hidden"; // Restore horizontal scrolling
-  }
+  useEffect(() => {
+    if (person) {
+      document.body.style.overflowY = "hidden"; // Disable horizontal scrolling
+    } else {
+      document.body.style.overflowY = "auto"; // Restore horizontal scrolling
+      document.body.style.overflowX = "hidden"; // Restore horizontal scrolling
+    }
 
-  // Cleanup function to ensure horizontal scrolling is restored if the component unmounts
-  return () => {
-    document.body.style.overflowX = "auto";
-  };
-}, [person]);
-
+    // Cleanup function to ensure horizontal scrolling is restored if the component unmounts
+    return () => {
+      document.body.style.overflowX = "auto";
+    };
+  }, [person]);
 
   return (
-    <section
-      className={`container mx-auto px-4 py-12 service transition-opacity duration-500 ease-in-out ${
-        isVisible ? "opacity-100 animate-serviceanime" : "opacity-0"
-      }`}
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{  amount: 0.05 }} // Trigger when 5% of the section is in view
+      className="container mx-auto px-4 py-12 service transition-opacity duration-500 ease-in-out"
       id="team"
     >
       <h2 className="text-3xl text-gray-800 font-semibold text-center mb-8">Our Team</h2>
       <div className="max-w-7xl grid mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 px-4 gap-16">
         {teamMembers.map((member) => (
-          <div
+          <motion.div
             key={member.id}
             className="bg-white bg-opacity-10 rounded-lg shadow-lg hover:scale-105 transition-all duration-300 border-2 border-slate-700 w-full max-w-full sm:w-full"
+            whileHover={{ scale: 1.05 }} // Hover scale effect
+            initial={{ opacity: 0, y: 50 }} // Individual item motion
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: member.id * 0.1 }}
             onClick={() => {
               setPerson(true);
               setDetailid(member);
@@ -136,12 +141,18 @@ const Team = ({ isVisible }) => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
+
       {person && (
         <div className="fixed inset-0 bg-black bg-opacity-80 z-50 min-h-screen flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-[80%] relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white rounded-lg shadow-lg p-6 w-[80%] relative"
+          >
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-xl font-bold"
               onClick={() => setPerson(false)}
@@ -184,10 +195,10 @@ const Team = ({ isVisible }) => {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
-    </section>
+    </motion.section>
   );
 };
 

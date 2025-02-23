@@ -1,191 +1,133 @@
 "use client";
+import { motion } from "framer-motion";
 import {
-  FaCode,           // Website Development
-  FaEthereum,       // Web3 DApps
-  FaBullhorn,       // Promotion
-  FaChartLine,      // Digital Marketing
-  FaCogs,           // ERP System
-  FaRobot,          // Automation with DevOps
-  FaBrain,          // AI-Based Solutions
-  FaPalette,        // Logo and Graphics Design
-  FaDesktop,        // UI Development
+  FaCode,
+  FaEthereum,
+  FaBullhorn,
+  FaChartLine,
+  FaCogs,
+  FaRobot,
+  FaBrain,
+  FaPalette,
+  FaDesktop,
 } from "react-icons/fa";
 
-const Services = ({ isVisible }) => {
+const Services = () => {
   return (
     <section id="services" className="service">
-      {/* Only show content when it's visible */}
-      <section
-        className={`py-16 service transition-opacity duration-500 ease-in-out ${
-          isVisible ? "opacity-100 animate-serviceanime" : "opacity-0"
-        }`}
-        id="services"
+      {/* Animated Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{  amount: 0.05 }} // Trigger when 20% in view
+        className="py-16 service"
       >
         <div className="max-w-7xl mx-auto text-center px-4">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-12">
             Our Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            {/* Website Development Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid #33afff" }}
-            >
-              <div className="mb-6 text-blue-500">
-                <FaCode className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                Website Development
-              </h3>
-              <p className="text-gray-600">
-                We specialize in building responsive, mobile-friendly websites
-                that ensure fast load times, great user experiences, and
-                effective SEO.
-              </p>
-            </div>
-
-            {/* Web3 DApps Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid purple" }}
-            >
-              <div className="mb-6 text-purple-500">
-                <FaEthereum className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                Web3 DApps
-              </h3>
-              <p className="text-gray-600">
-                We create decentralized applications that leverage blockchain
-                technology, ensuring security, transparency, and scalability.
-              </p>
-            </div>
-
-            {/* Promotion Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid orange" }}
-            >
-              <div className="mb-6 text-orange-500">
-                <FaBullhorn className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                Promotion
-              </h3>
-              <p className="text-gray-600">
-                We provide innovative promotional strategies to help your brand
-                stand out and connect with your audience effectively.
-              </p>
-            </div>
-
-            {/* Digital Marketing Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid teal" }}
-            >
-              <div className="mb-6 text-teal-500">
-                <FaChartLine className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                Digital Marketing
-              </h3>
-              <p className="text-gray-600">
-                Our digital marketing services help you achieve better online
-                visibility, drive traffic, and grow your business.
-              </p>
-            </div>
-
-            {/* ERP System Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid #33afff" }}
-            >
-              <div className="mb-6 text-blue-500">
-                <FaCogs className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                ERP System for Companies
-              </h3>
-              <p className="text-gray-600">
-                We provide customized ERP solutions to streamline your business
-                processes and improve efficiency.
-              </p>
-            </div>
-
-            {/* Automation with DevOps Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid purple" }}
-            >
-              <div className="mb-6 text-purple-500">
-                <FaRobot className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                Automation with DevOps
-              </h3>
-              <p className="text-gray-600">
-                We offer automated workflows using DevOps practices to enhance
-                collaboration, reduce deployment times, and improve product
-                quality.
-              </p>
-            </div>
-
-            {/* AI-Based Solutions Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid teal" }}
-            >
-              <div className="mb-6 text-teal-500">
-                <FaBrain className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                AI-Based Solutions
-              </h3>
-              <p className="text-gray-600">
-                We leverage AI technologies to provide innovative solutions
-                that help businesses improve decision-making and streamline
-                operations.
-              </p>
-            </div>
-
-            {/* Logo and Graphics Design Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid #33afff" }}
-            >
-              <div className="mb-6 text-blue-500">
-                <FaPalette className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                Logo and Graphics Design
-              </h3>
-              <p className="text-gray-600">
-                We provide custom logo and graphic designs to enhance your
-                brand identity and make a lasting impression.
-              </p>
-            </div>
-
-            {/* UI Development Card */}
-            <div
-              className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform scale-95 hover:scale-100 duration-300"
-              style={{ border: "2px solid orange" }}
-            >
-              <div className="mb-6 text-orange-500">
-                <FaDesktop className="w-20 h-20 mx-auto" />
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-                UI Development
-              </h3>
-              <p className="text-gray-600">
-                We specialize in creating user interfaces that provide
-                excellent user experiences and seamless navigation.
-              </p>
-            </div>
+            {servicesData.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }} // Start animation from bottom
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{  amount: 0.05 }} // Trigger when 20% in view
+                className="bg-white bg-opacity-10 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform duration-300"
+                style={{ border: `2px solid ${service.borderColor}` }}
+              >
+                <div className={`mb-6 text-${service.iconColor}-500`}>
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600">{service.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+      </motion.section>
     </section>
   );
 };
+
+// Services Data Array
+const servicesData = [
+  {
+    icon: <FaCode className="w-20 h-20 mx-auto" />,
+    title: "Website Development",
+    description:
+      "We specialize in building responsive, mobile-friendly websites with great SEO and fast performance.",
+    borderColor: "#33afff",
+    iconColor: "blue",
+  },
+  {
+    icon: <FaEthereum className="w-20 h-20 mx-auto" />,
+    title: "Web3 DApps",
+    description:
+      "We create decentralized applications using blockchain technology for security and scalability.",
+    borderColor: "purple",
+    iconColor: "purple",
+  },
+  {
+    icon: <FaBullhorn className="w-20 h-20 mx-auto" />,
+    title: "Promotion",
+    description:
+      "We provide innovative promotional strategies to help your brand stand out and reach its audience.",
+    borderColor: "orange",
+    iconColor: "orange",
+  },
+  {
+    icon: <FaChartLine className="w-20 h-20 mx-auto" />,
+    title: "Digital Marketing",
+    description:
+      "We enhance your online presence with digital marketing strategies that drive traffic and growth.",
+    borderColor: "teal",
+    iconColor: "teal",
+  },
+  {
+    icon: <FaCogs className="w-20 h-20 mx-auto" />,
+    title: "ERP System for Companies",
+    description:
+      "Our customized ERP solutions streamline business operations for increased efficiency.",
+    borderColor: "#33afff",
+    iconColor: "blue",
+  },
+  {
+    icon: <FaRobot className="w-20 h-20 mx-auto" />,
+    title: "Automation with DevOps",
+    description:
+      "We automate workflows with DevOps practices to improve efficiency and deployment speed.",
+    borderColor: "purple",
+    iconColor: "purple",
+  },
+  {
+    icon: <FaBrain className="w-20 h-20 mx-auto" />,
+    title: "AI-Based Solutions",
+    description:
+      "Our AI solutions help businesses enhance decision-making and optimize processes.",
+    borderColor: "teal",
+    iconColor: "teal",
+  },
+  {
+    icon: <FaPalette className="w-20 h-20 mx-auto" />,
+    title: "Logo and Graphics Design",
+    description:
+      "We create custom logos and graphic designs to elevate your brand identity.",
+    borderColor: "#33afff",
+    iconColor: "blue",
+  },
+  {
+    icon: <FaDesktop className="w-20 h-20 mx-auto" />,
+    title: "UI Development",
+    description:
+      "We design intuitive and engaging user interfaces for a seamless user experience.",
+    borderColor: "orange",
+    iconColor: "orange",
+  },
+];
 
 export default Services;

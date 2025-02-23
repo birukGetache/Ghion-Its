@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";  // Import motion
 import Timeline from "./TimeLine";
 
 const PartnerCard = ({ partner }) => {
@@ -18,7 +19,7 @@ const PartnerCard = ({ partner }) => {
   );
 };
 
-const PartnerPage = ({ isVisible }) => {
+const PartnerPage = () => {
   const [length, setLength] = useState(0);
 
   // Example partner data
@@ -45,17 +46,15 @@ const PartnerPage = ({ isVisible }) => {
     { date: '2023-05-01', description: 'Project Completion' },
   ];
 
-  // Debugging: Log the events array
-  console.log("Events:", events);
-
   return (
-    <section
-      className={`container py-10 mx-auto px-4 service transition-opacity duration-500 ease-in-out flex items-center justify-center ${
-        isVisible ? "opacity-100 animate-serviceanime" : "opacity-0"
-      }`}
+    <motion.section
+      className="container py-10 mx-auto px-4 service flex items-center justify-center"
       id="partner"
+      initial={{ opacity: 0, y: 30 }} // Start with opacity 0 and positioned 30px down
+      whileInView={{ opacity: 1, y: 0 }} // Move to full opacity and original position
+      viewport={{ once: true, amount: 0.2 }} // Trigger when 20% of the section is visible
     >
-      <div className="container mx-auto px-4  overflow-y-auto">
+      <div className="container mx-auto px-4 overflow-y-auto">
         <h1 className="text-4xl font-semibold text-center text-gray-800 mb-12">
           Our Trusted Partner
         </h1>
@@ -72,31 +71,31 @@ const PartnerPage = ({ isVisible }) => {
             partners.map((partner, index) => <PartnerCard key={index} partner={partner} />)
           )}
         </div>
-        <div class="bg-gray-100 p-8 rounded-lg shadow-md max-w-2xl mx-auto">
-  <p class="text-gray-700 text-lg mb-6">
-    The institution works with various companies and alumni, focusing on its core objectives to achieve its mission and vision. It is a center that provides specialized professional training to students both before and after their graduation.
-  </p>
+        <div className="bg-gray-100 p-8 rounded-lg shadow-md max-w-2xl mx-auto">
+          <p className="text-gray-700 text-lg mb-6">
+            The institution works with various companies and alumni, focusing on its core objectives to achieve its mission and vision. It is a center that provides specialized professional training to students both before and after their graduation.
+          </p>
 
-  <div class="space-y-4">
-    <div class="flex items-center">
-      <span class="font-semibold text-gray-800">Main Coordinator:</span>
-      <span class="ml-2 text-gray-600">0945550071 (Henok)</span>
-    </div>
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <span className="font-semibold text-gray-800">Main Coordinator:</span>
+              <span className="ml-2 text-gray-600">0945550071 (Henok)</span>
+            </div>
 
-    <div class="flex items-center">
-      <span class="font-semibold text-gray-800">Training Coordinator:</span>
-      <span class="ml-2 text-gray-600">0938831785 (Gedam)</span>
-    </div>
+            <div className="flex items-center">
+              <span className="font-semibold text-gray-800">Training Coordinator:</span>
+              <span className="ml-2 text-gray-600">0938831785 (Gedam)</span>
+            </div>
 
-    <div class="flex items-center">
-      <span class="font-semibold text-gray-800">Career Counselor:</span>
-      <span class="ml-2 text-gray-600">0941378906 (Netsanet)</span>
-    </div>
-  </div>
-</div>
-        <Timeline events={events} />
+            <div className="flex items-center">
+              <span className="font-semibold text-gray-800">Career Counselor:</span>
+              <span className="ml-2 text-gray-600">0941378906 (Netsanet)</span>
+            </div>
+          </div>
+        </div>
+        {/* <Timeline events={events} /> */}
       </div>
-    </section>
+    </motion.section>
   );
 };
 
